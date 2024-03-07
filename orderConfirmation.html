@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Order Confirmation</h2>
+    <div id="orderDetails"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderConfirmation = JSON.parse(sessionStorage.getItem('orderConfirmation'));
+            const orderDetailsDiv = document.getElementById('orderDetails');
+
+            if (orderConfirmation) {
+                orderDetailsDiv.innerHTML = `
+                    <p>Your order has been placed successfully!</p>
+                    <p><strong>Order ID:</strong> #${orderConfirmation.id}</p>
+                    <p><strong>Drink Description:</strong> ${orderConfirmation.description}</p>
+                    <p><strong>Cost:</strong> $${orderConfirmation.cost.toFixed(2)}</p>
+                `;
+            } else {
+                orderDetailsDiv.innerHTML = `<p>There was an error processing your order.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

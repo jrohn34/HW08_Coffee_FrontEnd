@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+#orderSummary {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: inline-block;
+    text-align: left;
+}
+
+.clickable {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
