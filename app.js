@@ -28,7 +28,6 @@ function addCondiment(condiment) {
     displayOrder(); // Refresh the order summary display
 }
 
-
 function removeCondiment(index) {
     let condiments = JSON.parse(sessionStorage.getItem('condiments') || '[]');
     condiments.splice(index, 1); 
@@ -41,9 +40,6 @@ function removeBeverage() {
     sessionStorage.removeItem('condiments');
     location.href = 'selectBeverage.html'; 
 }
-
-
-
 
 function displayOrder() {
     const orderSummary = document.getElementById('orderSummary');
@@ -68,22 +64,17 @@ function displayOrder() {
     orderSummary.innerHTML = displayHtml;
 }
 
-
-
 function confirmOrder() {
     const beverage = sessionStorage.getItem('beverage');
     const condiments = JSON.parse(sessionStorage.getItem('condiments') || '[]');
 
     // Prepare the order data
-       const orderData = {
+    const orderData = {
         beverage: beverage,
         condiments: condiments,
     };
 
-    // Print the JSON body to the console
-    console.log("Submitting order with JSON body:", JSON.stringify(orderData));
-
-    fetch('https://coffee-order-latest-2unk.onrender.com/orders', {
+    fetch('http://localhost:8080/orders', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
