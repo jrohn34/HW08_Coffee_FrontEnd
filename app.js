@@ -83,8 +83,13 @@ function confirmOrder() {
         return response.json();
     })
     .then(data => {
-        sessionStorage.setItem('orderConfirmation', JSON.stringify(data));
-        window.location.href = 'orderConfirmation.html'; 
+        const orderDetails = document.getElementById('orderDetails');
+        orderDetails.innerHTML = `
+            <p><strong>Order ID:</strong> ${data.id}</p>
+            <p><strong>Description:</strong> ${data.description}</p>
+            <p><strong>Cost:</strong> ${data.cost}</p>
+        `;
+
     })
     .catch((error) => {
         console.error('Error:', error);
