@@ -12,27 +12,24 @@ function selectBeverage(beverage) {
 }
 
 function addCondiment(condiment) {
-    // Retrieve the current list of condiments from sessionStorage, or initialize an empty array if none exist.
     let condiments = sessionStorage.getItem('condiments') ? JSON.parse(sessionStorage.getItem('condiments')) : [];
     const index = condiments.indexOf(condiment);
 
-    // If the condiment is already in the array, remove it. Otherwise, add it.
     if (index > -1) {
-        condiments.splice(index, 1); // Remove the condiment
+        condiments.splice(index, 1); 
     } else {
-        // Add the condiment
         condiments.push(condiment);
     }
 
-    sessionStorage.setItem('condiments', JSON.stringify(condiments)); // Update sessionStorage with the new list of condiments
-    displayOrder(); // Refresh the order summary display
+    sessionStorage.setItem('condiments', JSON.stringify(condiments)); 
+    displayOrder(); 
 }
 
 function removeCondiment(index) {
     let condiments = JSON.parse(sessionStorage.getItem('condiments') || '[]');
     condiments.splice(index, 1); 
-    sessionStorage.setItem('condiments', JSON.stringify(condiments)); // Update sessionStorage
-    displayOrder(); // Refresh the order summary display
+    sessionStorage.setItem('condiments', JSON.stringify(condiments)); 
+    displayOrder(); 
 }
 
 function removeBeverage() {
@@ -46,7 +43,6 @@ function displayOrder() {
     const beverage = sessionStorage.getItem('beverage');
     const condiments = JSON.parse(sessionStorage.getItem('condiments') || '[]');
 
-    // Initialize the order summary with the beverage information
     let displayHtml = `<strong>Order Summary:</strong><br>`;
     if (beverage) {
         displayHtml += `<span class="clickable" onclick="removeBeverage()">${beverage}</span><br>`;
@@ -68,7 +64,6 @@ function confirmOrder() {
     const beverage = sessionStorage.getItem('beverage');
     const condiments = JSON.parse(sessionStorage.getItem('condiments') || '[]');
 
-    // Prepare the order data
     const orderData = {
         beverage: beverage,
         condiments: condiments,
